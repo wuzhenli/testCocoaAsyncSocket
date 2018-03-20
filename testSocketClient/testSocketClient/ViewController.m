@@ -4,7 +4,7 @@
 //
 //  Created by li’Pro on 2018/3/15.
 //  Copyright © 2018年 wzl. All rights reserved.
-//
+//  iphone :192.168.6.126
 
 #import "ViewController.h"
 #import "GCDAsyncSocket.h"
@@ -66,6 +66,7 @@
     
     [sock readDataWithTimeout:-1 tag:0];
 }
+
 /**
  * Called when a socket has completed reading the requested data into memory.
  * Not called if there is an error.

@@ -27,6 +27,12 @@
     // Do any additional setup after loading the view, typically from a nib.
     _arrClient = @[].mutableCopy;
     _mudicSending = [[NSMutableDictionary alloc] initWithCapacity:10];
+    
+    NSData *data = [GCDAsyncSocket CRLFData];
+    NSData *dataTail = [@"\r\n" dataUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"%@|%@|", data, dataTail);
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"%@", str);
 }
 - (IBAction)listen:(id)sender {
     if (self.socketServer) {
@@ -74,11 +80,6 @@
     
     [newSocket readDataWithTimeout:-1 tag:0];
 }
-
-- (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
-    NSLog(@"%s", __func__);
-    
-}
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
     NSLog(@"%s:%ld", __func__, tag);
     NSString *text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -89,9 +90,6 @@
     [sock readDataWithTimeout:-1 tag:0];
 }
 
-- (void)socket:(GCDAsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag {
-    NSLog(@"%s:%ld", __func__, tag);
-}
 
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag {
     NSLog(@"%s:%ld", __func__, tag);
