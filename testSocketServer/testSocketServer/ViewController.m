@@ -33,20 +33,17 @@
     NSLog(@"%@|%@|", data, dataTail);
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"%@", str);
+    self.socketServer = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
 }
 - (IBAction)listen:(id)sender {
-    if (self.socketServer) {
-        [self showTipMessage:@"已连接"];
-        return;
-    }
-    [_arrClient removeAllObjects];
+    
     uint16_t port = [self.txtPort.text intValue];
     if (0 == port) {
         [self showTipMessage:@"请输入端口号"];
         return;
     }
     NSError *error = nil;
-    self.socketServer = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    
     if ([self.socketServer acceptOnPort:port error:&error] && nil == error) {
         [self showTipMessage:@"监听中..."];
     } else {
@@ -101,9 +98,8 @@
 }
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(nullable NSError *)err {
     NSLog(@"%s", __func__);
+    [self.arrClient removeObject:sock];
     [self showTipMessage:@"socketDidDisconnect"];
-    [self.socketServer setDelegate:nil];
-    self.socketServer = nil;
 }
 
 

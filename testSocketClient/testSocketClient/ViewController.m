@@ -27,6 +27,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     _mudicSending = [[NSMutableDictionary alloc] initWithCapacity:10];
 }
+
 - (IBAction)connect:(id)sender {
     if (self.socketClient) {
         [self showTipMessage:@"已连接"];
@@ -76,7 +77,7 @@
     NSString *text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     [self showTipMessage:text];
-    [sock readDataWithTimeout:-1 tag:0];
+    [sock readDataWithTimeout:15 tag:0];
 }
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag {
     NSLog(@"%s:%ld", __func__, tag);
@@ -86,6 +87,13 @@
     [self.mudicSending removeObjectForKey:@(tag)];
     [self showTipMessage:msg];
 }
+/**
+ 后台 95 s 会断开
+ code 
+ 2: 服务器没监听，服务器地址、端口错了
+ 4: 读数据超过指定超时时间
+ 7: 服务器断开连接
+ */
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(nullable NSError *)err {
     NSLog(@"%s", __func__);
     [self showTipMessage:@"socketDidDisconnect"];

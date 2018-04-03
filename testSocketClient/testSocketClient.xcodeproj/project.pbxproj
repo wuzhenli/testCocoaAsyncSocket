@@ -214,6 +214,11 @@
 					0A53EEA8205A23DA00A79D16 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					0A53EEC0205A23DB00A79D16 = {
 						CreatedOnToolsVersion = 9.2;
@@ -446,10 +451,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y49U8RX2F5;
+				DEVELOPMENT_TEAM = 294Q8452TK;
 				INFOPLIST_FILE = testSocketClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jaly.www.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yemei.www.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -460,10 +465,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y49U8RX2F5;
+				DEVELOPMENT_TEAM = 294Q8452TK;
 				INFOPLIST_FILE = testSocketClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jaly.www.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yemei.www.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
